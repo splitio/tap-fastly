@@ -1,0 +1,965 @@
+{
+  "streams": [
+    {
+      "stream": "bills",
+      "tap_stream_id": "bills",
+      "schema": {
+        "type": [
+          "null",
+          "object"
+        ],
+        "properties": {
+          "customer_id": {
+            "type": [
+              "string"
+            ]
+          },
+          "end_time": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          },
+          "start_time": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          },
+          "invoice_id": {
+            "type": [
+              "integer"
+            ]
+          },
+          "regions":{
+             "type":[
+                "null",
+                "object"
+             ]
+          },
+          "status": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "properties": {
+              "status": {
+                "type": [
+                  "null",
+                  "string"
+                ]
+              }
+            }
+          },
+          "total": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "properties": {
+              "cost": {
+                "type": [
+                  "null",
+                  "number"
+                ]
+              },
+              "requests": {
+                "type": [
+                  "null",
+                  "number"
+                ]
+              },
+              "requests_cost": {
+                "type": [
+                  "null",
+                  "number"
+                ]
+              },
+              "bandwidth": {
+                "type": [
+                  "null",
+                  "number"
+                ]
+              },
+              "bandwidth_cost": {
+                "type": [
+                  "null",
+                  "number"
+                ]
+              },
+              "percentile": {
+                "type": [
+                  "null",
+                  "number"
+                ]
+              },
+              "percentile_cost": {
+                "type": [
+                  "null",
+                  "number"
+                ]
+              },
+              "commit_shortfall": {
+                "type": [
+                  "null",
+                  "number"
+                ]
+              },
+              "discount": {
+                "type": [
+                  "null",
+                  "number"
+                ]
+              },
+              "discount_amount": {
+                "type": [
+                  "null",
+                  "number"
+                ]
+              },
+              "incurred_cost": {
+                "type": [
+                  "null",
+                  "number"
+                ]
+              },
+              "overage": {
+                "type": [
+                  "null",
+                  "number"
+                ]
+              },
+              "cost_before_discount": {
+                "type": [
+                  "null",
+                  "number"
+                ]
+              },
+              "extras_cost": {
+                "type": [
+                  "null",
+                  "number"
+                ]
+              },
+              "bandwidth_units": {
+                "type": [
+                  "null",
+                  "string"
+                ]
+              },
+              "extras": {
+                "type": [
+                  "null",
+                  "array"
+                ],
+                "items": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "line_items": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": [
+                "null",
+                "object"
+              ],
+              "properties": {
+                "id": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "aria_invoice_id": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "line_number": {
+                  "type": [
+                    "null",
+                    "integer"
+                  ]
+                },
+                "description": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "service_no": {
+                  "type": [
+                    "null",
+                    "integer"
+                  ]
+                },
+                "service_name": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "units": {
+                  "type": [
+                    "null",
+                    "number"
+                  ]
+                },
+                "rate_per_unit": {
+                  "type": [
+                    "null",
+                    "number"
+                  ]
+                },
+                "amount": {
+                  "type": [
+                    "null",
+                    "number"
+                  ]
+                },
+                "rate_schedule_no": {
+                  "type": [
+                    "null",
+                    "integer"
+                  ]
+                },
+                "rate_schedule_tier_no": {
+                  "type": [
+                    "null",
+                    "integer"
+                  ]
+                },
+                "usage_type_no": {
+                  "type": [
+                    "null",
+                    "integer"
+                  ]
+                },
+                "usage_type_cd": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "plan_no": {
+                  "type": [
+                    "null",
+                    "integer"
+                  ]
+                },
+                "plan_name": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "client_service_id": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "credit_coupon_code": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "created_at": {
+                  "type": [
+                    "null",
+                    "string"
+                  ],
+                  "format": "date-time"
+                },
+                "updated_at": {
+                  "type": [
+                    "null",
+                    "string"
+                  ],
+                  "format": "date-time"
+                },
+                "deleted_at": {
+                  "type": [
+                    "null",
+                    "string"
+                  ],
+                  "format": "date-time"
+                }
+              }
+            }
+          }
+        }
+      },
+      "metadata": [
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "selected":true,
+            "replication-method":"INCREMENTAL",
+            "replication-key": "updated_at",
+            "table-key-properties": [
+              "customer_id"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stream": "stats",
+      "tap_stream_id": "stats",
+      "schema": {
+        "properties": {
+          "start_time": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "requests": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "hits": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "miss": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "uncacheable": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "pass": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "pipe": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "synth": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "blacklist": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "tls": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "ipv6": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "http2": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "shield": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "log": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "pci": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "video": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "imgopto": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "otfp": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "otfp_manifests": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "restarts": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "hits_time": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "miss_time": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "pass_time": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "status_1xx": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "status_2xx": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "status_3xx": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "status_4xx": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "status_5xx": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "status_200": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "status_204": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "status_301": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "status_302": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "status_304": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "status_400": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "status_401": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "status_403": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "status_404": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "status_416": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "status_500": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "status_501": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "status_502": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "status_503": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "status_504": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "status_505": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "req_header_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "req_body_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "resp_header_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "resp_body_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "bereq_header_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "bereq_body_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "shield_resp_header_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "shield_resp_body_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "waf_blocked": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "waf_logged": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "waf_passed": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "attack_req_header_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "attack_req_body_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "attack_resp_synth_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "attack_logged_req_header_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "attack_logged_req_body_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "attack_blocked_req_header_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "attack_blocked_req_body_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "attack_passed_req_header_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "attack_passed_req_body_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "imgopto_resp_header_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "imgopto_resp_body_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "imgopto_shield_resp_header_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "imgopto_shield_resp_body_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "otfp_resp_header_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "otfp_resp_body_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "otfp_shield_resp_header_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "otfp_shield_resp_body_bytes": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "otfp_shield_time": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "otfp_deliver_time": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "tls_v10": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "tls_v11": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "tls_v12": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "tls_v13": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "object_size_1k": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "object_size_10k": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "object_size_100k": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "object_size_1m": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "object_size_10m": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "object_size_100m": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "object_size_1g": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "header_size": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "body_size": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "orig_req_header_size": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "orig_req_body_size": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "orig_resp_header_size": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "orig_resp_body_size": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "service_id": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "hit_ratio": {
+            "type": [
+              "null",
+              "number"
+            ]
+          },
+          "bandwidth": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "service_name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "service_versions": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "service_customer_id": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "service_publish_key": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "service_comment": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "service_deleted_at": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          },
+          "service_updated_at": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          },
+          "service_created_at": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          }
+        },
+        "type": [
+          "null",
+          "object"
+        ]
+      },
+      "metadata": [
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "selected":true,
+            "replication-method":"INCREMENTAL",
+            "replication-key": ["from"],
+            "table-key-properties": [
+              "start_time",
+              "service_id"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
