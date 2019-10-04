@@ -16,9 +16,4 @@ if [[ ! -d "${VENV}" ]]; then
   pip3.6 install ${PARAMS} -U setuptools pip
   pip3.6 install ${PARAMS} ${FLAG} ${SOURCE_INSTALL}
   deactivate
-else
-  source "$VENV/bin/activate"
-  pip3.6 install ${PARAMS} -U setuptools pip
-  pip3.6 install -U ${PARAMS} ${FLAG} ${SOURCE_INSTALL}
-  deactivate
 fi
