@@ -29,26 +29,24 @@ def load_schemas():
     return schemas
 
 def discover():
-    raw_schemas = load_schemas() #goes through file names in schema folder
+    raw_schemas = load_schemas() 
     streams = []
 
-    for schema_name, schema in raw_schemas.items(): #instead of this get the schema of the first item(row schema) then do a for loop of the streams 
-        #instead of bills.json containing both bills and stats, have stats.json file so that we can go through each file independently
-        #one stream one metadata put it into catalog 
+    for schema_name, schema in raw_schemas.items():  
         # TODO: populate any metadata and stream's key properties here..
         stream_metadata = []
         stream_key_properties = []
         
-        stream_schema = schema['streams'][0]['schema'] #gets the schema
+        stream_schema = schema['streams'][0]['schema'] 
         
-        stream_metadata = schema['streams'][0]['metadata'] #populates metadata
+        stream_metadata = schema['streams'][0]['metadata'] 
         stream_key_properties = schema['streams'][0]['metadata'][0]['metadata']['table-key-properties'] #populates key properties
 
 
 
 
         # create and add catalog entry
-        catalog_entry = { #need the right things in here, can make schema just the schema (generate metadata and key properties,) OR instead of loading schema you can load everything then parse those things(maybe a bit faster but 1 is more typical)
+        catalog_entry = { 
             'stream': schema_name,
             'tap_stream_id': schema_name,
             'schema': stream_schema,
@@ -67,9 +65,9 @@ def get_selected_streams(catalog):
     and mdata with a 'selected' entry
     '''
     selected_streams = []
-    for stream in catalog['streams']: #expecting the mess of shit and pipelinewise makes us clean it up #figure out command that pipelinewise is running here and see whats in the catalog and what i should be using instead of the stream
+    for stream in catalog['streams']: 
         stream_metadata = metadata.to_map(stream['metadata'])
-        # stream metadata will have an empty breadcrumb
+        
         if metadata.get(stream_metadata, (), "selected"):
             selected_streams.append(stream['tap_stream_id'])
 

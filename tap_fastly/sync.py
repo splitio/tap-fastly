@@ -112,8 +112,8 @@ class FastlySync:
                     end = datetime.datetime.strptime(result["end_time"], "%Y-%m-%dT%H:%M:%SZ").isoformat()
                     self.state = write_bookmark(self.state, stream, "start_time", end)
                 except:
-                    # print("lo que falla es:" + result['end_time'])
-                    sys.stderr.write("lo que falla es:" + result['end_time']+"\n")
+                    # print("what fails is:" + result['end_time'])
+                    sys.stderr.write("what fails is:" + result['end_time']+"\n")
 
     async def sync_stats(self, schema, period:pendulum.period = None):
         """Output the stats in the period."""
@@ -148,7 +148,7 @@ class FastlySync:
                 end = end_temp.isoformat()
                 self.state = write_bookmark(self.state, stream, "from", end)
             except:
-                # print("lo que falla es:" + result['meta']["to"])
-                sys.stderr.write("lo que falla es:" + result['meta']["to"]+"\n")
+                # print("what fails is:" + result['meta']["to"])
+                sys.stderr.write("what fails is:" + result['meta']["to"]+"\n")
 
 
