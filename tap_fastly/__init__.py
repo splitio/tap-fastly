@@ -40,7 +40,7 @@ def discover():
         stream_schema = schema['streams'][0]['schema'] 
         
         stream_metadata = schema['streams'][0]['metadata'] 
-        stream_key_properties = schema['streams'][0]['metadata'][0]['metadata']['table-key-properties'] #populates key properties
+        stream_key_properties = schema['streams'][0]['metadata'][0]['metadata']['table-key-properties']
 
 
 
