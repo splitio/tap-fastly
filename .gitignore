@@ -1,2 +1,7 @@
 .DS_Store
 .idea/
+/tap_fastly/__pycache__/
+/tap_fastly.egg-info/
+
+
+
