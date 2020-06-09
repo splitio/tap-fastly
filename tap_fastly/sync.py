@@ -11,6 +11,7 @@ import pendulum
 from singer.bookmarks import write_bookmark, get_bookmark
 from pendulum import  period
 import datetime
+import sys
 
 
 class FastlyAuthentication(requests.auth.AuthBase):
@@ -101,7 +102,7 @@ class FastlySync:
             end = pendulum.now()
             period = pendulum.period(start, end)
 
-        singer.write_schema(stream, schema.to_dict(), ["invoice_id"])
+        singer.write_schema(stream, schema, ["invoice_id"])
 
         for at in period.range("months"):
             result = await loop.run_in_executor(None, self.client.bill, at)
@@ -111,14 +112,15 @@ class FastlySync:
                     end = datetime.datetime.strptime(result["end_time"], "%Y-%m-%dT%H:%M:%SZ").isoformat()
                     self.state = write_bookmark(self.state, stream, "start_time", end)
                 except:
-                    print("lo que falla es:" + result['end_time'])
+                    # print("lo que falla es:" + result['end_time'])
+                    sys.stderr.write("lo que falla es:" + result['end_time']+"\n")
 
     async def sync_stats(self, schema, period:pendulum.period = None):
         """Output the stats in the period."""
         stream = "stats"
         loop = asyncio.get_event_loop()
 
-        singer.write_schema(stream, schema.to_dict(), ["service_id", "start_time"])
+        singer.write_schema(stream, schema, ["service_id", "start_time"])
         bookmark = get_bookmark(self.state, stream, "from")
         if bookmark is not None:
             if "UTC" in bookmark:
@@ -146,6 +148,7 @@ class FastlySync:
                 end = end_temp.isoformat()
                 self.state = write_bookmark(self.state, stream, "from", end)
             except:
-                print("lo que falla es:" + result['meta']["to"])
+                # print("lo que falla es:" + result['meta']["to"])
+                sys.stderr.write("lo que falla es:" + result['meta']["to"]+"\n")
 
 

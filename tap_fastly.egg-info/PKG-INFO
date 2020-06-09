@@ -1,0 +1,11 @@
+Metadata-Version: 1.1
+Name: tap-fastly
+Version: 0.1.0
+Summary: Singer.io tap for extracting Fastly billing data.
+Home-page: http://singer.io
+Author: Stitch
+Author-email: UNKNOWN
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3 :: Only
