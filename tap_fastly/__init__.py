@@ -29,26 +29,34 @@ def load_schemas():
     return schemas
 
 def discover():
-    raw_schemas = load_schemas()
+    raw_schemas = load_schemas() 
     streams = []
 
-    for schema_name, schema in raw_schemas.items():
-
+    for schema_name, schema in raw_schemas.items():  
         # TODO: populate any metadata and stream's key properties here..
         stream_metadata = []
         stream_key_properties = []
+        
+        stream_schema = schema['streams'][0]['schema'] 
+        
+        stream_metadata = schema['streams'][0]['metadata'] 
+        stream_key_properties = schema['streams'][0]['metadata'][0]['metadata']['table-key-properties']
+
+
+
 
         # create and add catalog entry
-        catalog_entry = {
+        catalog_entry = { 
             'stream': schema_name,
             'tap_stream_id': schema_name,
-            'schema': schema,
-            'metadata' : [],
-            'key_properties': []
+            'schema': stream_schema,
+            'metadata' : stream_metadata, 
+            'key_properties': stream_key_properties
         }
         streams.append(catalog_entry)
 
     return {'streams': streams}
+
 
 def get_selected_streams(catalog):
     '''
@@ -57,11 +65,11 @@ def get_selected_streams(catalog):
     and mdata with a 'selected' entry
     '''
     selected_streams = []
-    for stream in catalog.streams:
-        stream_metadata = metadata.to_map(stream.metadata)
-        # stream metadata will have an empty breadcrumb
+    for stream in catalog['streams']: 
+        stream_metadata = metadata.to_map(stream['metadata'])
+        
         if metadata.get(stream_metadata, (), "selected"):
-            selected_streams.append(stream.tap_stream_id)
+            selected_streams.append(stream['tap_stream_id'])
 
     return selected_streams
 
@@ -72,9 +80,9 @@ def create_sync_tasks(config, state, catalog):
 
     selected_stream_ids = get_selected_streams(catalog)
 
-    sync_tasks = (sync.sync(stream.tap_stream_id, stream.schema)
-                  for stream in catalog.streams
-                  if stream.tap_stream_id in selected_stream_ids)
+    sync_tasks = (sync.sync(stream['tap_stream_id'], stream['schema'])
+                  for stream in catalog['streams']
+                  if stream['tap_stream_id'] in selected_stream_ids)
 
     return asyncio.gather(*sync_tasks)
 
