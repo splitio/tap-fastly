@@ -49,7 +49,8 @@ class FastlyClient:
     def bill(self, at: datetime):
         try:
             return self._get(f"billing/v2/year/{at.year}/month/{at.month}")
-        except:
+        except Exception as err:
+            sys.stderr.write('bill api call exception %s', err)
             return None
 
     def stats(self, start_date, end_date, params=None):
@@ -58,7 +59,8 @@ class FastlyClient:
                 return self._get(f"stats?from={start_date}&to={end_date}")
             else:
                 return self._get(f"stats")
-        except:
+        except Exception as err:
+            sys.stderr.write('stats api call exception %s', err)
             return None
 
     def service(self, service_id):
