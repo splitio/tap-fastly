@@ -11,7 +11,10 @@ import pendulum
 from singer.bookmarks import write_bookmark, get_bookmark
 from pendulum import  period
 import datetime
+from dateutil.relativedelta import relativedelta
 import sys
+
+LOGGER = singer.get_logger()
 
 
 class FastlyAuthentication(requests.auth.AuthBase):
@@ -48,17 +51,23 @@ class FastlyClient:
 
     def bill(self, at: datetime):
         try:
-            return self._get(f"billing/v2/year/{at.year}/month/{at.month}")
+            url = f"billing/v2/year/{at.year}/month/{at.month}"
+            LOGGER.info("bills: get %s", url)
+            return self._get(url)
         except Exception as err:
             sys.stderr.write('bill api call exception %s', err)
             return None
 
     def stats(self, start_date, end_date, params=None):
         try:
+            url = ""
             if start_date is not None:
-                return self._get(f"stats?from={start_date}&to={end_date}")
+                url = f"stats?from={start_date}&to={end_date}"
             else:
-                return self._get(f"stats")
+                url = f"stats"
+
+            LOGGER.info("stats: get %s", url)
+            return self._get(url)
         except Exception as err:
             sys.stderr.write('stats api call exception %s', err)
             return None
@@ -101,7 +110,7 @@ class FastlySync:
             # build a default period from the last bookmark
             bookmark = get_bookmark(self.state, stream, "start_time")
             start = pendulum.parse(bookmark)
-            end = pendulum.now()
+            end = pendulum.now() + relativedelta(months=-1)
             period = pendulum.period(start, end)
 
         singer.write_schema(stream, schema, ["invoice_id"])
@@ -132,6 +141,7 @@ class FastlySync:
             start_date = pendulum.parse(self._config['start_date']).int_timestamp
         end_date = pendulum.now().int_timestamp
         result = await loop.run_in_executor(None, self.client.stats, start_date, end_date)
+        LOGGER.info("stats results: %s", result)
         if result:
             for n in result['data']:
                 service_result = await loop.run_in_executor(None, self.client.service, n)
