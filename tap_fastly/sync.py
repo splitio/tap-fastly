@@ -110,7 +110,7 @@ class FastlySync:
             # build a default period from the last bookmark
             bookmark = get_bookmark(self.state, stream, "start_time")
             start = pendulum.parse(bookmark)
-            end = pendulum.now() + relativedelta(months=-1)
+            end = pendulum.now()
             period = pendulum.period(start, end)
 
         singer.write_schema(stream, schema, ["invoice_id"])
