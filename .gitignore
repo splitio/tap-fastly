@@ -1,6 +1,7 @@
 .DS_Store
 .idea/
 .venv/
+build/
 tap_fastly/__pycache__/
 tap_fastly.egg-info/
 
