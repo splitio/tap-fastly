@@ -213,19 +213,19 @@
                         "units":{
                            "type":[
                               "null",
-                              "string"
+                              "number"
                            ]
                         },
                         "rate_per_unit":{
                            "type":[
                               "null",
-                              "string"
+                              "number"
                            ]
                         },
                         "amount":{
                            "type":[
                               "null",
-                              "string"
+                              "number"
                            ]
                         },
                         "rate_schedule_no":{
